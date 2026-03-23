@@ -1,4 +1,4 @@
-# 🎟️ Ticket Reservation System (C++)
+#🎟️ Ticket Reservation System (C++)
 📌 Overview
 
 This project is a console-based Ticket Reservation System developed using C++ and the Queue (FIFO) data structure.
