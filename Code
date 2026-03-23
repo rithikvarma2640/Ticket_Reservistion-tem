@@ -1,0 +1,79 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define MAX 10  
+
+struct Queue {
+    string names[MAX];
+    int front, rear;
+
+    Queue() {
+        front = rear = -1;
+    }
+
+    bool isFull() {
+        return (rear == MAX - 1);
+    }
+
+    bool isEmpty() {
+        return (front == -1 || front > rear);
+    }
+
+    void enqueue(string name) {
+        if (isFull()) {
+            cout << "Queue is full! No more bookings.\n";
+            return;
+        }
+        if (front == -1) front = 0;
+        names[++rear] = name;
+        cout << "Booking confirmed for " << name << endl;
+    }
+
+    void dequeue() {
+        if (isEmpty()) {
+            cout << "No customers in queue.\n";
+            return;
+        }
+        cout << "Serving customer: " << names[front++] << endl;
+    }
+
+    void display() {
+        if (isEmpty()) {
+            cout << "No customers in queue.\n";
+            return;
+        }
+        cout << "\n--- Current Waiting List ---\n";
+        for (int i = front; i <= rear; i++) {
+            cout << i - front + 1 << ". " << names[i] << endl;
+        }
+    }
+};
+
+int main() {
+    Queue q;
+    int choice;
+    string name;
+
+    do {
+        cout << "\n--- Ticket Reservation Menu ---\n";
+        cout << "1. Book Ticket (Enqueue)\n2. Serve Customer (Dequeue)\n3. Show Waiting List\n4. Exit\nChoice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter customer name: ";
+                cin >> name;
+                q.enqueue(name);
+                break;
+            case 2:
+                q.dequeue();
+                break;
+            case 3:
+                q.display();
+                break;
+        }
+    } while (choice != 4);
+
+    return 0;
+}
